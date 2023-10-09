@@ -1,2 +1,3 @@
-# media-player
-Media Player library
+# MediaPlayer
+
+A description of this package.
