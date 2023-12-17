@@ -26,16 +26,16 @@ public class MediaPlayer: ObservableObject {
 
   public var requestHeaders: [String: String] = [:]
 
-  private var _mediaSource: MediaSource?
+  private var _url: URL?
 
-  public var mediaSource: MediaSource? {
+  public var url: URL? {
     get {
-      _mediaSource
+      _url
     }
     set {
-      _mediaSource = newValue
+      _url = newValue
 
-      if let newValue = newValue, let url = newValue.url {
+      if let newValue = newValue, let url = url {
         let options = requestHeaders.isEmpty ? nil : ["AVURLAssetHTTPHeaderFieldsKey": requestHeaders]
 
         let asset = AVURLAsset(url: url, options: options)
@@ -196,11 +196,11 @@ public class MediaPlayer: ObservableObject {
     play()
   }
 
-  public func reload(mediaSource: MediaSource?) {
-    if let mediaSource = mediaSource {
+  public func reload(url: URL?) {
+    if let url = url {
       stop()
 
-      self.mediaSource = mediaSource
+      self.url = url
       setCurrentTime(.zero)
 
       player.play()
@@ -249,31 +249,43 @@ public class MediaPlayer: ObservableObject {
     player.seek(to: CMTime(seconds: seconds, preferredTimescale: 1), toleranceBefore: .zero, toleranceAfter: .zero)
   }
 
-  public func update(mediaSource: MediaSource, startTime: Double) {
-    if isNewMediaSource(mediaSource: mediaSource) {
+  public func update(url: URL, startTime: Double) {
+    //if self.url == nil || self.url != url {
       if isPlaying {
         player.pause()
       }
 
-      self.mediaSource = mediaSource
+      self.url = url
 
       setCurrentTime(startTime)
-    }
+    //}
   }
 
-  private func isNewMediaSource(mediaSource: MediaSource) -> Bool {
-    if let playerMediaSource = self.mediaSource {
-      if mediaSource.id != nil && playerMediaSource.id != nil {
-        return mediaSource.id != playerMediaSource.id
-      }
-      else {
-        return mediaSource.url != playerMediaSource.url
-      }
-    }
-    else {
-      return true
-    }
-  }
+//  public func update(mediaSource: MediaSource, startTime: Double) {
+//    if isNewMediaSource(mediaSource: mediaSource) {
+//      if isPlaying {
+//        player.pause()
+//      }
+//
+//      self.mediaSource = mediaSource
+//
+//      setCurrentTime(startTime)
+//    }
+//  }
+
+//  private func isNewMediaSource(mediaSource: MediaSource) -> Bool {
+//    if let playerMediaSource = self.mediaSource {
+//      if mediaSource.id != nil && playerMediaSource.id != nil {
+//        return mediaSource.id != playerMediaSource.id
+//      }
+//      else {
+//        return mediaSource.url != playerMediaSource.url
+//      }
+//    }
+//    else {
+//      return true
+//    }
+//  }
 
 //  public func volume(volume: Float) {
 //    player.volume = volume
