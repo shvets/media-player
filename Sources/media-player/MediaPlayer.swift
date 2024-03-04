@@ -35,13 +35,24 @@ public class MediaPlayer: ObservableObject {
     set {
       _url = newValue
 
-      if let newValue = newValue, let url = url {
+      if let newValue = newValue {
         let options = requestHeaders.isEmpty ? nil : ["AVURLAssetHTTPHeaderFieldsKey": requestHeaders]
 
-        let asset = AVURLAsset(url: url, options: options)
+        let asset = AVURLAsset(url: newValue, options: options)
         let playerItem = AVPlayerItem(asset: asset)
 
-        setCurrentItem(playerItem)
+        if isPlaying {
+          pause()
+
+          seek(0)
+
+          setCurrentItem(playerItem)
+
+          play()
+        }
+        else {
+          setCurrentItem(playerItem)
+        }
       }
     }
   }
