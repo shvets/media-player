@@ -5,11 +5,13 @@ public class CommandCenterManager {
   let commandCenter = MPRemoteCommandCenter.shared()
 
   @ObservedObject var player: MediaPlayer
-  var navigator: PlayerNavigator?
+  var nextTrack: () -> Void
+  var previousTrack: () -> Void
 
-  public init(@ObservedObject player: MediaPlayer, navigator: PlayerNavigator? = nil) {
+  public init(@ObservedObject player: MediaPlayer, nextTrack: @escaping () -> Void, previousTrack: @escaping () -> Void) {
     self.player = player
-    self.navigator = navigator
+    self.nextTrack = nextTrack
+    self.previousTrack = previousTrack
   }
 
   public func start() {
@@ -61,8 +63,8 @@ public class CommandCenterManager {
 
     commandCenter.previousTrackCommand.removeTarget(nil)
 
-    commandCenter.previousTrackCommand.addTarget { event in
-      self.navigator?.previous()
+    commandCenter.previousTrackCommand.addTarget { [self] event in
+      previousTrack()
 
       return .success
     }
@@ -73,8 +75,8 @@ public class CommandCenterManager {
 
     commandCenter.nextTrackCommand.removeTarget(nil)
 
-    commandCenter.nextTrackCommand.addTarget { event in
-      self.navigator?.next()
+    commandCenter.nextTrackCommand.addTarget { [self] event in
+      nextTrack()
 
       return .success
     }

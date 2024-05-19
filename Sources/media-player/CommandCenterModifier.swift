@@ -1,21 +1,26 @@
-import Foundation
-import SwiftUI
 import AVKit
+import SwiftUI
 
-public struct CommandCenterHandler: ViewModifier {
+struct CommandCenterModifier: ViewModifier {
+  var commandCenterManager: CommandCenterManager {
+    CommandCenterManager(player: player, nextTrack: nextTrack, previousTrack: previousTrack)
+  }
+
   @ObservedObject var player: MediaPlayer
-  var stopOnLeave: Bool = true
+  var stopOnLeave: Bool
   var playImmediately: Bool
-  var commandCenterManager: CommandCenterManager
+  var nextTrack: () -> Void
+  var previousTrack: () -> Void
 
   public init(@ObservedObject player: MediaPlayer, stopOnLeave: Bool = true, playImmediately: Bool,
-              commandCenterManager: CommandCenterManager) {
+              nextTrack: @escaping () -> Void, previousTrack: @escaping () -> Void) {
     self.player = player
     self.stopOnLeave = stopOnLeave
     self.playImmediately = playImmediately
-    self.commandCenterManager = commandCenterManager
+    self.nextTrack = nextTrack
+    self.previousTrack = previousTrack
   }
-    
+
   public func body(content: Content) -> some View {
     content
       .onAppear {
@@ -56,3 +61,12 @@ public struct CommandCenterHandler: ViewModifier {
     }
   }
 }
+
+extension View {
+  public func commandCenter(player: MediaPlayer, stopOnLeave: Bool, playImmediately: Bool,
+                            nextTrack: @escaping () -> Void, previousTrack: @escaping () -> Void) -> some View {
+    self.modifier(CommandCenterModifier(player: player, stopOnLeave: stopOnLeave, playImmediately: playImmediately,
+        nextTrack: nextTrack, previousTrack: previousTrack))
+  }
+}
+
