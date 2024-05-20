@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6f0c7a3-ac8d-4ef4-8a9e-95771b575cf1" name="Changes" comment="continue playing on url reassignment" />
+    <list default="true" id="d6f0c7a3-ac8d-4ef4-8a9e-95771b575cf1" name="Changes" comment="create modifier">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +15,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;shvets&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/shvets/media-player.git&quot;,
+    &quot;accountId&quot;: &quot;e0e86e1c-f836-4d4a-b46e-008498e5f511&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -39,11 +53,23 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "XcodeSettings",
+    "settings.editor.selected.configurable": "swift.lang.settings.e",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SwiftWorkspaceSettings">
+    <option name="detectedToolchain" value="true" />
+    <option name="toolchainPathValue" value="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain" />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="d6f0c7a3-ac8d-4ef4-8a9e-95771b575cf1" name="Changes" comment="" />
@@ -53,6 +79,8 @@
       <updated>1709570353898</updated>
       <workItem from="1709570354941" duration="306000" />
       <workItem from="1710117896496" duration="127000" />
+      <workItem from="1716153866366" duration="2445000" />
+      <workItem from="1716158296100" duration="1520000" />
     </task>
     <task id="LOCAL-00001" summary="continue playing on url reassignment">
       <option name="closed" value="true" />
@@ -62,7 +90,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709570631507</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="create modifier">
+      <option name="closed" value="true" />
+      <created>1716156710141</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716156710141</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -70,7 +106,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="continue playing on url reassignment" />
-    <option name="LAST_COMMIT_MESSAGE" value="continue playing on url reassignment" />
+    <MESSAGE value="create modifier" />
+    <option name="LAST_COMMIT_MESSAGE" value="create modifier" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

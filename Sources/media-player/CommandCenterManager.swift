@@ -1,17 +1,17 @@
 import MediaPlayer
 import SwiftUI
 
-public class CommandCenterManager {
+public class CommandCenterManager<T> {
   let commandCenter = MPRemoteCommandCenter.shared()
 
   @ObservedObject var player: MediaPlayer
-  var nextTrack: () -> Void
-  var previousTrack: () -> Void
+  var nextMedia: () -> T?
+  var previousMedia: () -> T?
 
-  public init(@ObservedObject player: MediaPlayer, nextTrack: @escaping () -> Void, previousTrack: @escaping () -> Void) {
+  public init(@ObservedObject player: MediaPlayer, nextMedia: @escaping () -> T?, previousMedia: @escaping () -> T?) {
     self.player = player
-    self.nextTrack = nextTrack
-    self.previousTrack = previousTrack
+    self.nextMedia = nextMedia
+    self.previousMedia = previousMedia
   }
 
   public func start() {
@@ -64,7 +64,7 @@ public class CommandCenterManager {
     commandCenter.previousTrackCommand.removeTarget(nil)
 
     commandCenter.previousTrackCommand.addTarget { [self] event in
-      previousTrack()
+      previousMedia()
 
       return .success
     }
@@ -76,7 +76,7 @@ public class CommandCenterManager {
     commandCenter.nextTrackCommand.removeTarget(nil)
 
     commandCenter.nextTrackCommand.addTarget { [self] event in
-      nextTrack()
+      nextMedia()
 
       return .success
     }

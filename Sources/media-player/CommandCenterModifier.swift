@@ -1,24 +1,24 @@
 import AVKit
 import SwiftUI
 
-struct CommandCenterModifier: ViewModifier {
-  var commandCenterManager: CommandCenterManager {
-    CommandCenterManager(player: player, nextTrack: nextTrack, previousTrack: previousTrack)
+struct CommandCenterModifier<T>: ViewModifier {
+  var commandCenterManager: CommandCenterManager<T> {
+    CommandCenterManager(player: player, nextMedia: nextMedia, previousMedia: previousMedia)
   }
 
   @ObservedObject var player: MediaPlayer
   var stopOnLeave: Bool
   var playImmediately: Bool
-  var nextTrack: () -> Void
-  var previousTrack: () -> Void
+  var nextMedia: () -> T?
+  var previousMedia: () -> T?
 
   public init(@ObservedObject player: MediaPlayer, stopOnLeave: Bool = true, playImmediately: Bool,
-              nextTrack: @escaping () -> Void, previousTrack: @escaping () -> Void) {
+              nextMedia: @escaping () -> T?, previousMedia: @escaping () -> T?) {
     self.player = player
     self.stopOnLeave = stopOnLeave
     self.playImmediately = playImmediately
-    self.nextTrack = nextTrack
-    self.previousTrack = previousTrack
+    self.nextMedia = nextMedia
+    self.previousMedia = previousMedia
   }
 
   public func body(content: Content) -> some View {
@@ -63,10 +63,10 @@ struct CommandCenterModifier: ViewModifier {
 }
 
 extension View {
-  public func commandCenter(player: MediaPlayer, stopOnLeave: Bool, playImmediately: Bool,
-                            nextTrack: @escaping () -> Void, previousTrack: @escaping () -> Void) -> some View {
+  public func commandCenter<T>(player: MediaPlayer, stopOnLeave: Bool, playImmediately: Bool,
+                            nextMedia: @escaping () -> T?, previousMedia: @escaping () -> T?) -> some View {
     self.modifier(CommandCenterModifier(player: player, stopOnLeave: stopOnLeave, playImmediately: playImmediately,
-        nextTrack: nextTrack, previousTrack: previousTrack))
+        nextMedia: nextMedia, previousMedia: previousMedia))
   }
 }
 
