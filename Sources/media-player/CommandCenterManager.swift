@@ -7,11 +7,14 @@ public class CommandCenterManager<T> {
   @ObservedObject var player: MediaPlayer
   var nextMedia: () -> T?
   var previousMedia: () -> T?
+  var update: (T, Double) -> Void
 
-  public init(@ObservedObject player: MediaPlayer, nextMedia: @escaping () -> T?, previousMedia: @escaping () -> T?) {
+  public init(@ObservedObject player: MediaPlayer, nextMedia: @escaping () -> T?, previousMedia: @escaping () -> T?,
+              update: @escaping (T, Double) -> Void) {
     self.player = player
     self.nextMedia = nextMedia
     self.previousMedia = previousMedia
+    self.update = update
   }
 
   public func start() {
@@ -64,7 +67,9 @@ public class CommandCenterManager<T> {
     commandCenter.previousTrackCommand.removeTarget(nil)
 
     commandCenter.previousTrackCommand.addTarget { [self] event in
-      previousMedia()
+      if let item = previousMedia() {
+        update(item, .zero)
+      }
 
       return .success
     }
@@ -76,7 +81,9 @@ public class CommandCenterManager<T> {
     commandCenter.nextTrackCommand.removeTarget(nil)
 
     commandCenter.nextTrackCommand.addTarget { [self] event in
-      nextMedia()
+      if let item = nextMedia() {
+        update(item, .zero)
+      }
 
       return .success
     }

@@ -3,7 +3,7 @@ import SwiftUI
 
 struct CommandCenterModifier<T>: ViewModifier {
   var commandCenterManager: CommandCenterManager<T> {
-    CommandCenterManager(player: player, nextMedia: nextMedia, previousMedia: previousMedia)
+    CommandCenterManager(player: player, nextMedia: nextMedia, previousMedia: previousMedia, update: update)
   }
 
   @ObservedObject var player: MediaPlayer
@@ -11,14 +11,17 @@ struct CommandCenterModifier<T>: ViewModifier {
   var playImmediately: Bool
   var nextMedia: () -> T?
   var previousMedia: () -> T?
+  var update: (T, Double) -> Void
 
   public init(@ObservedObject player: MediaPlayer, stopOnLeave: Bool = true, playImmediately: Bool,
-              nextMedia: @escaping () -> T?, previousMedia: @escaping () -> T?) {
+              nextMedia: @escaping () -> T?, previousMedia: @escaping () -> T?,
+              update: @escaping (T, Double) -> Void) {
     self.player = player
     self.stopOnLeave = stopOnLeave
     self.playImmediately = playImmediately
     self.nextMedia = nextMedia
     self.previousMedia = previousMedia
+    self.update = update
   }
 
   public func body(content: Content) -> some View {
@@ -64,9 +67,10 @@ struct CommandCenterModifier<T>: ViewModifier {
 
 extension View {
   public func commandCenter<T>(player: MediaPlayer, stopOnLeave: Bool, playImmediately: Bool,
-                            nextMedia: @escaping () -> T?, previousMedia: @escaping () -> T?) -> some View {
+                               nextMedia: @escaping () -> T?, previousMedia: @escaping () -> T?,
+                               update: @escaping (T, Double) -> Void) -> some View {
     self.modifier(CommandCenterModifier(player: player, stopOnLeave: stopOnLeave, playImmediately: playImmediately,
-        nextMedia: nextMedia, previousMedia: previousMedia))
+        nextMedia: nextMedia, previousMedia: previousMedia, update: update))
   }
 }
 
