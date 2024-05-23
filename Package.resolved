@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "item-navigator",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/shvets/item-navigator",
+      "state" : {
+        "revision" : "ce616ad622c4e6a205b1f4ae716069196f278ea5",
+        "version" : "1.0.1"
+      }
+    }
+  ],
+  "version" : 2
+}

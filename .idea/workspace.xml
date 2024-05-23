@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d6f0c7a3-ac8d-4ef4-8a9e-95771b575cf1" name="Changes" comment="update parameters">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/media-player/CommandCenterManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/media-player/CommandCenterManager.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/media-player/CommandCenterModifier.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/media-player/CommandCenterModifier.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +86,8 @@
       <workItem from="1716158296100" duration="1520000" />
       <workItem from="1716243676928" duration="192000" />
       <workItem from="1716244022581" duration="2000" />
+      <workItem from="1716260448963" duration="146000" />
+      <workItem from="1716426827277" duration="717000" />
     </task>
     <task id="LOCAL-00001" summary="continue playing on url reassignment">
       <option name="closed" value="true" />
@@ -108,7 +113,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716243759581</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="update parameters">
+      <option name="closed" value="true" />
+      <created>1716260533632</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716260533632</updated>
+    </task>
+    <task id="LOCAL-00005" summary="update parameters">
+      <option name="closed" value="true" />
+      <created>1716260574684</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716260574684</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

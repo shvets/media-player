@@ -1,27 +1,23 @@
 import AVKit
 import SwiftUI
+import item_navigator
 
-struct CommandCenterModifier<T>: ViewModifier {
+struct CommandCenterModifier<T: Identifiable>: ViewModifier {
   var commandCenterManager: CommandCenterManager<T> {
-    CommandCenterManager(player: player, nextMedia: nextMedia, previousMedia: previousMedia, update: update)
+    CommandCenterManager<T>(player: player, navigator: navigator)
   }
 
   @ObservedObject var player: MediaPlayer
+  var navigator: ItemNavigator<T>
   var stopOnLeave: Bool
   var playImmediately: Bool
-  var nextMedia: () -> T?
-  var previousMedia: () -> T?
-  var update: (T, Double) -> Void
 
-  public init(@ObservedObject player: MediaPlayer, stopOnLeave: Bool = true, playImmediately: Bool,
-              nextMedia: @escaping () -> T?, previousMedia: @escaping () -> T?,
-              update: @escaping (T, Double) -> Void) {
+  public init(@ObservedObject player: MediaPlayer, navigator: ItemNavigator<T>, stopOnLeave: Bool = true,
+              playImmediately: Bool = false) {
     self.player = player
+    self.navigator = navigator
     self.stopOnLeave = stopOnLeave
     self.playImmediately = playImmediately
-    self.nextMedia = nextMedia
-    self.previousMedia = previousMedia
-    self.update = update
   }
 
   public func body(content: Content) -> some View {
@@ -66,11 +62,10 @@ struct CommandCenterModifier<T>: ViewModifier {
 }
 
 extension View {
-  public func commandCenter<T>(player: MediaPlayer, stopOnLeave: Bool, playImmediately: Bool,
-                               nextMedia: @escaping () -> T?, previousMedia: @escaping () -> T?,
-                               update: @escaping (T, Double) -> Void) -> some View {
-    self.modifier(CommandCenterModifier(player: player, stopOnLeave: stopOnLeave, playImmediately: playImmediately,
-        nextMedia: nextMedia, previousMedia: previousMedia, update: update))
+  public func commandCenter<T>(player: MediaPlayer, navigator: ItemNavigator<T>, stopOnLeave: Bool,
+                               playImmediately: Bool) -> some View {
+    self.modifier(CommandCenterModifier(player: player, navigator: navigator, stopOnLeave: stopOnLeave,
+        playImmediately: playImmediately))
   }
 }
 

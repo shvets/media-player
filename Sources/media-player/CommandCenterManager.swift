@@ -1,20 +1,16 @@
 import MediaPlayer
 import SwiftUI
+import item_navigator
 
-public class CommandCenterManager<T> {
+public class CommandCenterManager<T: Identifiable> {
   let commandCenter = MPRemoteCommandCenter.shared()
 
   @ObservedObject var player: MediaPlayer
-  var nextMedia: () -> T?
-  var previousMedia: () -> T?
-  var update: (T, Double) -> Void
+  var navigator: ItemNavigator<T>
 
-  public init(@ObservedObject player: MediaPlayer, nextMedia: @escaping () -> T?, previousMedia: @escaping () -> T?,
-              update: @escaping (T, Double) -> Void) {
+  public init(@ObservedObject player: MediaPlayer, navigator: ItemNavigator<T>) {
     self.player = player
-    self.nextMedia = nextMedia
-    self.previousMedia = previousMedia
-    self.update = update
+    self.navigator = navigator
   }
 
   public func start() {
@@ -67,8 +63,8 @@ public class CommandCenterManager<T> {
     commandCenter.previousTrackCommand.removeTarget(nil)
 
     commandCenter.previousTrackCommand.addTarget { [self] event in
-      if let item = previousMedia() {
-        update(item, .zero)
+      if let item = navigator.previous() {
+        navigator.update(item: item, time: .zero)
       }
 
       return .success
@@ -81,8 +77,8 @@ public class CommandCenterManager<T> {
     commandCenter.nextTrackCommand.removeTarget(nil)
 
     commandCenter.nextTrackCommand.addTarget { [self] event in
-      if let item = nextMedia() {
-        update(item, .zero)
+      if let item = navigator.next() {
+        navigator.update(item: item, time: .zero)
       }
 
       return .success
