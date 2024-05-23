@@ -79,7 +79,9 @@ public class MediaPlayer: ObservableObject {
   }
 
   public init() {
+#if os(iOS) || os(tvOS)
     UIApplication.shared.beginReceivingRemoteControlEvents()
+#endif
 
     $isEditingCurrentTime
       .dropFirst()

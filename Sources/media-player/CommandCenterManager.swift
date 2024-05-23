@@ -14,8 +14,9 @@ public class CommandCenterManager<T: Identifiable> {
   }
 
   public func start() {
+#if os(iOS) || os(tvOS)
     UIApplication.shared.beginReceivingRemoteControlEvents()
-
+#endif
     setupChangePlaybackPositionCommand()
     setupTogglePlayPauseCommand()
     setupPreviousTrackCommand()
@@ -28,7 +29,9 @@ public class CommandCenterManager<T: Identifiable> {
   }
 
   public func stop() {
+#if os(iOS) || os(tvOS)
     UIApplication.shared.endReceivingRemoteControlEvents()
+#endif
   }
 
   private func setupChangePlaybackPositionCommand() {

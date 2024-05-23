@@ -40,12 +40,14 @@ struct CommandCenterModifier<T: Identifiable>: ViewModifier {
           setAudioSessionCategory(to: .ambient)
         }
       }
+#if os(iOS) || os(tvOS)
       .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
         //player.pause()
       }
       .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
         //player.play()
       }
+#endif
   }
 
   private func setAudioSessionCategory(to value: AVAudioSession.Category) {
