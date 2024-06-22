@@ -21,9 +21,6 @@ public class MediaPlayer: ObservableObject {
   private var currentTimeObserver: Any?
   private var periodicSavedTimeObserver: Any?
 
-  //public var playMode: PlayMode = PlayMode.reset
-  @Published public var pipStatus: PipStatus = .undefined
-
   public var requestHeaders: [String: String] = [:]
 
   private var _url: URL?
@@ -173,10 +170,6 @@ public class MediaPlayer: ObservableObject {
 
   public func play() {
     isPlaying = true
-
-//    if playMode == .reset {
-//      //player.currentTime = 0
-//    }
 
     player.play()
   }

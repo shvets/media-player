@@ -6,6 +6,6 @@ A description of this package.
 
 
 ```bash
-git tag 1.2.2
+git tag 2,0.0
 git push --tags
 ```
