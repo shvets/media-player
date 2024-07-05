@@ -67,7 +67,8 @@ public class CommandCenterManager<T: Identifiable> {
 
     commandCenter.previousTrackCommand.addTarget { [self] event in
       if let item = navigator.previous() {
-        navigator.update(item: item, time: .zero)
+        navigator.selectItem(item)
+        navigator.update(item: item)
       }
 
       return .success
@@ -81,7 +82,8 @@ public class CommandCenterManager<T: Identifiable> {
 
     commandCenter.nextTrackCommand.addTarget { [self] event in
       if let item = navigator.next() {
-        navigator.update(item: item, time: .zero)
+        navigator.selectItem(item)
+        navigator.update(item: item)
       }
 
       return .success

@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6f0c7a3-ac8d-4ef4-8a9e-95771b575cf1" name="Changes" comment="update parameters" />
+    <list default="true" id="d6f0c7a3-ac8d-4ef4-8a9e-95771b575cf1" name="Changes" comment="update project">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Swift File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,6 +47,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;DefaultSwiftTemplate&quot;: &quot;Swift File&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
@@ -58,8 +68,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
       </set>
     </attachedChunks>
   </component>
@@ -85,6 +95,8 @@
       <workItem from="1716426827277" duration="812000" />
       <workItem from="1716429588866" duration="88000" />
       <workItem from="1716429804906" duration="166000" />
+      <workItem from="1719071876219" duration="662000" />
+      <workItem from="1719967641401" duration="27000" />
     </task>
     <task id="LOCAL-00001" summary="continue playing on url reassignment">
       <option name="closed" value="true" />
@@ -158,7 +170,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716429960583</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="update project">
+      <option name="closed" value="true" />
+      <created>1719072498915</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1719072498916</updated>
+    </task>
+    <task id="LOCAL-00011" summary="update project">
+      <option name="closed" value="true" />
+      <created>1719072518009</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1719072518009</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +196,8 @@
     <MESSAGE value="continue playing on url reassignment" />
     <MESSAGE value="create modifier" />
     <MESSAGE value="update parameters" />
-    <option name="LAST_COMMIT_MESSAGE" value="update parameters" />
+    <MESSAGE value="update project" />
+    <option name="LAST_COMMIT_MESSAGE" value="update project" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
