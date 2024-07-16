@@ -27,13 +27,13 @@ struct CommandCenterModifier<T: Identifiable>: ViewModifier {
 
         commandCenterManager.start()
 
-        if playImmediately {
-          player.play()
-        }
+//        if playImmediately {
+//          player.play()
+//        }
       }
       .onDisappear {
         if stopOnLeave {
-          player.pause()
+          //player.pause()
 
           commandCenterManager.stop()
 
