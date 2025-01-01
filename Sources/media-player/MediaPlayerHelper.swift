@@ -27,6 +27,7 @@ open class MediaPlayerHelper {
 //  }
 
   public func handleAVAudioSessionInterruption(_ notification : Notification) {
+#if os(iOS) || os(tvOS)
     guard let userInfo = notification.userInfo as? [String: AnyObject] else { return }
 
     guard let rawInterruptionType = userInfo[AVAudioSessionInterruptionTypeKey] as? NSNumber else { return }
@@ -46,6 +47,7 @@ open class MediaPlayerHelper {
     @unknown default:
       fatalError()
     }
+#endif
   }
 
   public func formatTime(_ time: Double) -> String {

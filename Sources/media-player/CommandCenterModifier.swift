@@ -22,6 +22,7 @@ struct CommandCenterModifier<T: Identifiable>: ViewModifier {
 
   public func body(content: Content) -> some View {
     content
+#if os(iOS) || os(tvOS)
       .onAppear {
         setAudioSessionCategory(to: .playback)
 
@@ -40,7 +41,6 @@ struct CommandCenterModifier<T: Identifiable>: ViewModifier {
           setAudioSessionCategory(to: .ambient)
         }
       }
-#if os(iOS) || os(tvOS)
       .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
         //player.pause()
       }
@@ -50,6 +50,7 @@ struct CommandCenterModifier<T: Identifiable>: ViewModifier {
 #endif
   }
 
+#if os(iOS) || os(tvOS)
   private func setAudioSessionCategory(to value: AVAudioSession.Category) {
     let audioSession = AVAudioSession.sharedInstance()
     do {
@@ -61,6 +62,7 @@ struct CommandCenterModifier<T: Identifiable>: ViewModifier {
       print("Setting category to AVAudioSessionCategoryPlayback failed.")
     }
   }
+#endif
 }
 
 extension View {

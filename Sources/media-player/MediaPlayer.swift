@@ -147,7 +147,9 @@ public class MediaPlayer: ObservableObject {
       player.removeTimeObserver(timeObserver)
     }
 
+#if os(iOS) || os(tvOS)
     UIApplication.shared.endReceivingRemoteControlEvents()
+#endif
   }
 
   public func toggle() {

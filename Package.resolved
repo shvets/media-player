@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/shvets/item-navigator",
       "state" : {
-        "revision" : "ce616ad622c4e6a205b1f4ae716069196f278ea5",
-        "version" : "1.0.1"
+        "revision" : "81cad4adcec21d629b7f169a9e1aca4468502d48",
+        "version" : "1.0.8"
       }
     }
   ],
