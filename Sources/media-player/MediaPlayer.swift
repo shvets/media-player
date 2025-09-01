@@ -3,7 +3,7 @@ import AVFoundation
 import SwiftUI
 import Combine
 
-public class MediaPlayer: ObservableObject {
+@MainActor public class MediaPlayer: ObservableObject {
   @Published public var player = AVPlayer()
 
   @Published public var isPlaying = false
@@ -25,7 +25,7 @@ public class MediaPlayer: ObservableObject {
 
   private var _url: URL?
 
-  @MainActor public var url: URL? {
+  public var url: URL? {
     get {
       _url
     }
@@ -54,11 +54,11 @@ public class MediaPlayer: ObservableObject {
     }
   }
 
-  @MainActor public var currentItemDuration: Double? {
+  public var currentItemDuration: Double? {
     player.currentItem?.asset.duration.seconds
   }
 
-  @MainActor private func setCurrentItem(_ item: AVPlayerItem) {
+  private func setCurrentItem(_ item: AVPlayerItem) {
     duration = nil
     player.replaceCurrentItem(with: item)
 
@@ -75,7 +75,7 @@ public class MediaPlayer: ObservableObject {
 //      .store(in: &subscriptions)
   }
 
-  @MainActor public init() {
+  public init() {
 #if os(iOS) || os(tvOS)
     UIApplication.shared.beginReceivingRemoteControlEvents()
 #endif
@@ -138,7 +138,7 @@ public class MediaPlayer: ObservableObject {
     }
   }
 
-  @MainActor deinit {
+  deinit {
     if let timeObserver = currentTimeObserver {
       player.removeTimeObserver(timeObserver)
     }
@@ -188,7 +188,7 @@ public class MediaPlayer: ObservableObject {
     player.replaceCurrentItem(with: nil)
   }
 
-  @MainActor public func toEnd() {
+  public func toEnd() {
     pause()
 
     if let currentItem = player.currentItem {
@@ -204,7 +204,7 @@ public class MediaPlayer: ObservableObject {
     play()
   }
 
-  @MainActor public func reload(url: URL?) {
+  public func reload(url: URL?) {
     if let url = url {
       stop()
 
@@ -241,7 +241,7 @@ public class MediaPlayer: ObservableObject {
     isEditingCurrentTime = false
   }
 
-  @MainActor public func getPlayerPosition(_ value: Double) -> Double {
+  public func getPlayerPosition(_ value: Double) -> Double {
     if let currentItem = player.currentItem {
       let duration = currentItem.asset.duration.seconds
 
@@ -257,7 +257,7 @@ public class MediaPlayer: ObservableObject {
     player.seek(to: CMTime(seconds: seconds, preferredTimescale: 1), toleranceBefore: .zero, toleranceAfter: .zero)
   }
 
-  @MainActor public func update(url: URL, startTime: Double) {
+  public func update(url: URL, startTime: Double) {
     //if self.url == nil || self.url != url {
       if isPlaying {
         player.pause()
