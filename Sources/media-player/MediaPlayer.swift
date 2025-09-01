@@ -3,7 +3,7 @@ import AVFoundation
 import SwiftUI
 import Combine
 
-public class MediaPlayer: ObservableObject {
+@MainActor public class MediaPlayer: ObservableObject {
   @Published public var player = AVPlayer()
 
   @Published public var isPlaying = false
@@ -126,29 +126,37 @@ public class MediaPlayer: ObservableObject {
     currentTimeObserver = player.addPeriodicTimeObserver(forInterval: currentTimeInterval, queue: .main) { [weak self] time in
       guard let self = self else { return }
 
-      if self.isEditingCurrentTime == false {
-        self.currentTime = time.seconds
+      MainActor.assumeIsolated {
+        if self.isEditingCurrentTime == false {
+          self.currentTime = time.seconds
+        }
       }
     }
 
     periodicSavedTimeObserver = player.addPeriodicTimeObserver(forInterval: periodicSavedTimeInterval, queue: .main) { [weak self] time in
       guard let self = self else { return }
 
-      self.periodicSavedTime = time.seconds
+      MainActor.assumeIsolated {
+        self.periodicSavedTime = time.seconds
+      }
     }
   }
 
   deinit {
-    if let timeObserver = currentTimeObserver {
-      player.removeTimeObserver(timeObserver)
-    }
-
-    if let timeObserver = periodicSavedTimeObserver {
-      player.removeTimeObserver(timeObserver)
+    MainActor.assumeIsolated {
+      if let timeObserver = currentTimeObserver {
+        player.removeTimeObserver(timeObserver)
+      }
+      
+      if let timeObserver = periodicSavedTimeObserver {
+        player.removeTimeObserver(timeObserver)
+      }
     }
 
 #if os(iOS) || os(tvOS)
-    UIApplication.shared.endReceivingRemoteControlEvents()
+    MainActor.assumeIsolated {
+      UIApplication.shared.endReceivingRemoteControlEvents()
+    }
 #endif
   }
 
