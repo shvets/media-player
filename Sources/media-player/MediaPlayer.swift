@@ -75,7 +75,7 @@ public class MediaPlayer: ObservableObject {
 //      .store(in: &subscriptions)
   }
 
-  public init() {
+  @MainActor public init() {
 #if os(iOS) || os(tvOS)
     UIApplication.shared.beginReceivingRemoteControlEvents()
 #endif
