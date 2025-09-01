@@ -3,7 +3,7 @@ import AVFoundation
 import SwiftUI
 import Combine
 
-@MainActor public class MediaPlayer: ObservableObject {
+public class MediaPlayer: ObservableObject {
   @Published public var player = AVPlayer()
 
   @Published public var isPlaying = false
@@ -25,7 +25,7 @@ import Combine
 
   private var _url: URL?
 
-  public var url: URL? {
+  @MainActor public var url: URL? {
     get {
       _url
     }
@@ -54,11 +54,11 @@ import Combine
     }
   }
 
-  public var currentItemDuration: Double? {
+  @MainActor public var currentItemDuration: Double? {
     player.currentItem?.asset.duration.seconds
   }
 
-  private func setCurrentItem(_ item: AVPlayerItem) {
+  @MainActor private func setCurrentItem(_ item: AVPlayerItem) {
     duration = nil
     player.replaceCurrentItem(with: item)
 
@@ -188,7 +188,7 @@ import Combine
     player.replaceCurrentItem(with: nil)
   }
 
-  public func toEnd() {
+  @MainActor public func toEnd() {
     pause()
 
     if let currentItem = player.currentItem {
@@ -204,7 +204,7 @@ import Combine
     play()
   }
 
-  public func reload(url: URL?) {
+  @MainActor public func reload(url: URL?) {
     if let url = url {
       stop()
 
@@ -241,7 +241,7 @@ import Combine
     isEditingCurrentTime = false
   }
 
-  public func getPlayerPosition(_ value: Double) -> Double {
+  @MainActor public func getPlayerPosition(_ value: Double) -> Double {
     if let currentItem = player.currentItem {
       let duration = currentItem.asset.duration.seconds
 
@@ -257,7 +257,7 @@ import Combine
     player.seek(to: CMTime(seconds: seconds, preferredTimescale: 1), toleranceBefore: .zero, toleranceAfter: .zero)
   }
 
-  public func update(url: URL, startTime: Double) {
+  @MainActor public func update(url: URL, startTime: Double) {
     //if self.url == nil || self.url != url {
       if isPlaying {
         player.pause()
