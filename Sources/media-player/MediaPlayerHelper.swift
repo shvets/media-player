@@ -1,8 +1,7 @@
 import AVFoundation
 import SwiftUI
-import media_player
 
-open class MediaPlayerHelper {
+@MainActor open class MediaPlayerHelper {
   @ObservedObject var player: MediaPlayer
 
   public init(@ObservedObject player: MediaPlayer) {

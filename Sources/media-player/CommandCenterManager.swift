@@ -2,7 +2,7 @@ import MediaPlayer
 import SwiftUI
 import item_navigator
 
-public class CommandCenterManager<T: Identifiable> {
+@MainActor public class CommandCenterManager<T: Identifiable> {
   let commandCenter = MPRemoteCommandCenter.shared()
 
   @ObservedObject var player: MediaPlayer

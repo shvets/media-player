@@ -3,7 +3,7 @@ import AVFoundation
 import SwiftUI
 import Combine
 
-public class MediaPlayer: ObservableObject {
+@MainActor public class MediaPlayer: ObservableObject {
   @Published public var player = AVPlayer()
 
   @Published public var isPlaying = false
