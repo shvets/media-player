@@ -138,7 +138,7 @@ public class MediaPlayer: ObservableObject {
     }
   }
 
-  deinit {
+  @MainActor deinit {
     if let timeObserver = currentTimeObserver {
       player.removeTimeObserver(timeObserver)
     }
